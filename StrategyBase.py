@@ -35,6 +35,16 @@ class StrategyBase():
         self.printTurn(a_score,turnScore,diceToRoll,shouldRoll)
         return shouldRoll
 
+    """
+    a_score is a dictionary with keys of each player name/strategy 
+    and values of their current score.
+
+    turnScore is the score you have built up from rolling on this turn. 
+    This is the score that will be added to your total score if you decide not to roll again.
+
+    diceToRoll is the current dice out of 10 that you will roll 
+    if you decide to roll again. 
+    """
     def shouldIRoll(self,a_score,turnScore,diceToRoll):
         raise NotImplementedError('Your strategy class must have a function shouldIRoll declared')
 
