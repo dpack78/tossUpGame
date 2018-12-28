@@ -32,3 +32,5 @@ Note that because your strategy class extends StrategyBase you have several func
 
 Notice the constants file also has a debug mode that if true, will give a detailed printout of the game. 
 You can also change the GAME_COUNT to run more that 1 game inside a simulation
+
+Once you are ready run main.py to see the results!
