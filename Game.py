@@ -13,7 +13,7 @@ class Game():
         self.a_StrategyClass = {}
         self.a_hadLastTurn = {}
         self.onLastRound = False
-        self.round = 0
+        self.round = 1
 
         SF = StrategyFactory.StrategyFactory()
         for player in self.a_strategy:
@@ -34,7 +34,7 @@ class Game():
                 self.gameOver = True
             
             self.round += 1
-            if(self.round > 100):
+            if(self.round >= 1000):
                 self.gameOver = True
         # print(self.a_score)
         return self.a_score
@@ -48,7 +48,8 @@ class Game():
             shouldRoll = self.a_StrategyClass[player].shouldIRollBase(
                 self.a_score,
                 turnScore,
-                curDiceToBeRolled
+                curDiceToBeRolled,
+                self.round
             )
             if(shouldRoll):
                 a_roll = RollGetter.getRoll(curDiceToBeRolled)

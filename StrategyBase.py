@@ -14,9 +14,10 @@ class StrategyBase():
         maxScore = self.getMaxScore(a_score)
         return maxScore >= 100
 
-    def printTurn(self,a_score, turnScore, diceToRoll,shouldRoll):
+    def printTurn(self,a_score, turnScore, diceToRoll,shouldRoll,roundNumber):
         if(self.debugMode):
             print('')
+            print('round: ' + str(roundNumber))
             print('current score: ')
             print(a_score)
             print('Turn score: '+  str(turnScore))
@@ -30,9 +31,9 @@ class StrategyBase():
     def getPlayerName(self):
        return self.__class__.__name__
 
-    def shouldIRollBase(self,a_score,turnScore,diceToRoll):
-        shouldRoll = self.shouldIRoll(a_score,turnScore,diceToRoll)
-        self.printTurn(a_score,turnScore,diceToRoll,shouldRoll)
+    def shouldIRollBase(self,a_score,turnScore,diceToRoll,roundNumber):
+        shouldRoll = self.shouldIRoll(a_score,turnScore,diceToRoll,roundNumber)
+        self.printTurn(a_score,turnScore,diceToRoll,shouldRoll,roundNumber)
         return shouldRoll
 
     """
@@ -45,6 +46,6 @@ class StrategyBase():
     diceToRoll is the current dice out of 10 that you will roll 
     if you decide to roll again. 
     """
-    def shouldIRoll(self,a_score,turnScore,diceToRoll):
+    def shouldIRoll(self,a_score,turnScore,diceToRoll,roundNumber):
         raise NotImplementedError('Your strategy class must have a function shouldIRoll declared')
 

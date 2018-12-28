@@ -13,7 +13,7 @@ To add your own strategy, add a python file with the name of your strategy.
 Create a class with the same name as the file. 
 This class must extend StrategyBase.StrategyBase
 
-This class must have a method defined shouldIRoll(self, a_score,turnScore,diceToRoll) that returns a boolean.
+This class must have a method defined shouldIRoll(self, a_score,turnScore,diceToRoll,roundNumber) that returns a boolean.
 
 See "RandomDecision.py" for an example. This strategy randomly decides to roll again or not. Ideally your strategy can beat this one. 
 
@@ -24,6 +24,8 @@ a_score is a dictionary with keys of each player name/strategy and values of the
 turnScore is the score you have built up from rolling on this turn. This is the score that will be added to your total score if you decide not to roll again.
 
 diceToRoll is the current dice out of 10 that you will roll if you decide to roll again. 
+
+roundNumber is the nth turn that you are on starting at 1. The game will quit after 1000 turns.
 
 For the competition you'll only submit your python file with your strategy in it.
 So any changes to the rest of the code will not be considered.
