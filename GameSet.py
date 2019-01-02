@@ -1,5 +1,5 @@
 import Game
-
+import operator
 class GameSet():
     def __init__(self,gameCount,a_strategy):
         self.gameCount = gameCount
@@ -33,5 +33,5 @@ class GameSet():
         print(self.a_totalScore)
         print('')
         print('Games won')
-        print(self.a_gamesWon)
+        print(sorted(self.a_gamesWon.items(), key=operator.itemgetter(1)))
         print('')

@@ -6,12 +6,12 @@ import constants
 class Game():
     def __init__(self,a_strategy):
         #shuffle the array to randomize the turn order each game
-        random.shuffle(a_strategy)
         self.a_strategy = a_strategy
         self.gameOver = False
         self.a_score = {}
         self.a_StrategyClass = {}
         self.a_hadLastTurn = {}
+        self.a_turnOrder = []
         self.onLastRound = False
         self.round = 1
 
@@ -20,11 +20,13 @@ class Game():
             self.a_score[player] = 0
             self.a_StrategyClass[player] = SF.getStrategyClass(player)
             self.a_hadLastTurn[player] = False
+            self.a_turnOrder.append(player)
+        random.shuffle(self.a_turnOrder)
 
     def run(self):
         while(not self.gameOver):
             someoneHasATurn = False
-            for player, StratClass in self.a_StrategyClass.items():
+            for player in self.a_turnOrder:
                 if(self.a_hadLastTurn[player]):
                     continue
                 someoneHasATurn = True
