@@ -10,7 +10,6 @@ class GameSet():
             self.a_gamesWon[player] = 0
             self.a_totalScore[player] = 0
 
-
     def run(self):
         for i in range(self.gameCount):
             SingleGame = Game.Game(self.a_strategy)
