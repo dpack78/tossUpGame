@@ -1,3 +1,7 @@
 *.swp
 *.pyc
 temp.txt
+Dave*.py
+*.txt
+blackhole.py
+constants.py
