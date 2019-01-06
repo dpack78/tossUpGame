@@ -2,6 +2,7 @@
 *.pyc
 temp.txt
 Dave*.py
+!DaveFinal.py
 *.txt
 blackhole.py
 constants.py
