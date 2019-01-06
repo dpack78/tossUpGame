@@ -1,37 +1,42 @@
 import Game
 import operator
+import SafeGlobals
+import threading
+import multiprocessing
+import constants
 class GameSet():
     def __init__(self,gameCount,a_strategy):
-        self.gameCount = gameCount
         self.a_strategy = a_strategy
-        self.a_gamesWon = {}
-        self.a_totalScore = {}
-        for player in self.a_strategy:
-            self.a_gamesWon[player] = 0
-            self.a_totalScore[player] = 0
+        self.Globals = SafeGlobals.SafeGlobals(a_strategy)
 
     def run(self):
-        for i in range(self.gameCount):
+        a_thread = []
+        for i in range(constants.THREAD_COUNT):
+            a_thread.append(
+                # threading.Thread(target=self.threadAction, args=())
+                multiprocessing.Process(target=self.threadAction, args=())
+            )
+            a_thread[-1].start()
+        for t in a_thread:
+            t.join()
+        self.printResults()
+    
+    def threadAction(self):
+        gameCount = self.Globals.getGameCount()
+        while(gameCount > 0):
             SingleGame = Game.Game(self.a_strategy)
             a_finalScore = SingleGame.run()
             self.proccessFinalScore(a_finalScore)
-        self.printResults()
+            gameCount = self.Globals.getGameCount()
 
     def proccessFinalScore(self,a_finalScore):
-        curMax = 0
-        winningPlayer = 'error'
-        for player, score in a_finalScore.items(): 
-            if(score >= curMax):
-                curMax = score
-                winningPlayer = player
-            self.a_totalScore[player] += score
-        self.a_gamesWon[winningPlayer] += 1
+        self.Globals.proccessFinalScore(a_finalScore)
 
     def printResults(self):
         print('')
         print('Total scores: ')
-        print(self.a_totalScore)
+        print(self.Globals.a_totalScore)
         print('')
         print('Games won')
-        print(sorted(self.a_gamesWon.items(), key=operator.itemgetter(1)))
+        print(sorted(self.Globals.a_gamesWon.items(), key=operator.itemgetter(1)))
         print('')

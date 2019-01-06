@@ -1,6 +1,6 @@
 a_strategy = [
     # 'AlwaysTrue',
-    # 'RandomDecision',
+    'RandomDecision',
     # 'DaveCopyCat',
     # 'DaveCopyCat2',
     # 'Dave1',
@@ -12,10 +12,11 @@ a_strategy = [
     # 'Dave7',
     # 'Dave8',
     # 'Dave9',
-    # 'DaveFinal',
-    # 'Dave37',
+    'DaveFinal',
+    'Dave37',
 ]
 
-GAME_COUNT = 100000
+GAME_COUNT = 1
 # DEBUG_ON = True
 DEBUG_ON = False
+THREAD_COUNT = 1
